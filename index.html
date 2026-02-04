@@ -127,7 +127,7 @@ const logs = [
 "[INFO] Rewriting destiny files...",
 "[CRITICAL] Heart vulnerability detected...",
 "[INFO] Overriding logic.exe...",
-"[ERROR] Too much love detected ",
+"[ERROR] Too much love detected ❤️",
 "[INFO] Switching to confession protocol..."
 ];
 
@@ -186,28 +186,26 @@ function showValentine(){
 
 runInstaller();
 
-
 // ===== VALENTINE LOGIC =====
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const result = document.getElementById("result");
 const buttons = document.getElementById("buttons");
 
+// Yes button click
 yesBtn.addEventListener("click", ()=>{
-    buttons.style.display = "none";   // ✅ HIDE BUTTONS
-
+    buttons.style.display = "none";   // Hide buttons
     result.innerHTML = `
     💖 YES! 💖 <br><br>
     You are officially my Valentine ❤️ <br>
     Love installation complete 😘<br>
-	<br>
-	PAKISS NGA BII!?
+    <br>
+    PAKISS NGA BII!? 😏
     `;
 });
 
-// No button runs away
+// No button hover (runs away)
 noBtn.addEventListener("mouseover", ()=>{
-
     const box = document.getElementById("valentineBox");
     const rect = box.getBoundingClientRect();
 
@@ -217,6 +215,12 @@ noBtn.addEventListener("mouseover", ()=>{
     noBtn.style.position = "absolute";
     noBtn.style.left = Math.random()*maxX + "px";
     noBtn.style.top = Math.random()*maxY + "px";
+});
+
+// No button click (disappears)
+noBtn.addEventListener("click", ()=>{
+    noBtn.style.display = "none";
+    
 });
 
 </script>
