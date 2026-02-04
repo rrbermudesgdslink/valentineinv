@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Installing...</title>
+
+<style>
+    body {
+        margin: 0;
+        background: black;
+        color: #00ff9d;
+        font-family: Consolas, monospace;
+        overflow: hidden;
+    }
+
+    #installer {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 520px;
+        background: #0a0a0a;
+        border: 2px solid #00ff9d;
+        padding: 25px;
+        box-shadow: 0 0 25px #00ff9d;
+    }
+
+    #title {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    #log {
+        height: 220px;
+        overflow: hidden;
+        font-size: 14px;
+        white-space: pre-line;
+        margin-bottom: 20px;
+    }
+
+    #progressBar {
+        width: 100%;
+        height: 22px;
+        border: 1px solid #00ff9d;
+    }
+
+    #progress {
+        width: 0%;
+        height: 100%;
+        background: #00ff9d;
+        transition: width 0.2s linear;
+    }
+
+    #valentineBox {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #111;
+        border: 2px solid #ff4d6d;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 0 30px #ff4d6d;
+        color: white;
+        text-align: center;
+        display: none;
+    }
+
+    button {
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 12px;
+        margin: 10px;
+        cursor: pointer;
+    }
+
+    #yesBtn {
+        background: #ff4d6d;
+        color: white;
+    }
+
+    #noBtn {
+        background: #444;
+        color: white;
+        position: relative;
+    }
+
+    #result {
+        margin-top: 20px;
+        font-size: 24px;
+        color: #ff4d6d;
+    }
+</style>
+</head>
+
+<body>
+
+<div id="installer">
+    <div id="title">Installing Unknown Program...</div>
+    <div id="log"></div>
+    <div id="progressBar">
+        <div id="progress"></div>
+    </div>
+</div>
+
+<div id="valentineBox">
+    <h1>❤️ Will You Be My Valentine? ❤️</h1>
+
+    <div id="buttons">
+        <button id="yesBtn">YES 💕</button>
+        <button id="noBtn">No 😢</button>
+    </div>
+
+    <div id="result"></div>
+</div>
+
+<script>
+
+// ===== CRAZY INSTALLER =====
+const logs = [
+"[CRITICAL] Forcing admin privileges...",
+"[WARNING] Firewall bypass detected...",
+"[INFO] Downloading hidden payload...",
+"[WARNING] Accessing emotional core...",
+"[INFO] Injecting love.exe...",
+"[INFO] Rewriting destiny files...",
+"[CRITICAL] Heart vulnerability detected...",
+"[INFO] Overriding logic.exe...",
+"[ERROR] Too much love detected ",
+"[INFO] Switching to confession protocol..."
+];
+
+const crazySpam = [
+"[!!!] Memory override in progress...",
+"[!!!] Love packet injection...",
+"[!!!] Emotional sync started...",
+"[!!!] Target heart located...",
+"[!!!] Installing feelings.dll..."
+];
+
+const logBox = document.getElementById("log");
+const progress = document.getElementById("progress");
+const title = document.getElementById("title");
+
+let prog = 0;
+
+// Title glitch flicker
+setInterval(()=>{
+    if(Math.random() > 0.7){
+        title.textContent = "Installing ████ Program...";
+        setTimeout(()=>{
+            title.textContent = "Installing Unknown Program...";
+        },100);
+    }
+},300);
+
+function runInstaller(){
+
+    // Always push logs
+    if(Math.random() > 0.3){
+        logBox.innerHTML += logs[Math.floor(Math.random()*logs.length)] + "\n";
+    } else {
+        logBox.innerHTML += crazySpam[Math.floor(Math.random()*crazySpam.length)] + "\n";
+    }
+
+    // Auto scroll
+    logBox.scrollTop = logBox.scrollHeight;
+
+    // Continuous progress movement
+    prog += Math.random()*5 + 1;
+    if(prog > 100) prog = 100;
+    progress.style.width = prog + "%";
+
+    if(prog < 100){
+        setTimeout(runInstaller, 120);
+    } else {
+        setTimeout(showValentine, 800);
+    }
+}
+
+function showValentine(){
+    document.getElementById("installer").style.display = "none";
+    document.getElementById("valentineBox").style.display = "block";
+}
+
+runInstaller();
+
+
+// ===== VALENTINE LOGIC =====
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const result = document.getElementById("result");
+const buttons = document.getElementById("buttons");
+
+yesBtn.addEventListener("click", ()=>{
+    buttons.style.display = "none";   // ✅ HIDE BUTTONS
+
+    result.innerHTML = `
+    💖 YES! 💖 <br><br>
+    You are officially my Valentine ❤️ <br>
+    Love installation complete 😘<br>
+	<br>
+	PAKISS NGA BII!?
+    `;
+});
+
+// No button runs away
+noBtn.addEventListener("mouseover", ()=>{
+
+    const box = document.getElementById("valentineBox");
+    const rect = box.getBoundingClientRect();
+
+    const maxX = rect.width - noBtn.offsetWidth;
+    const maxY = rect.height - noBtn.offsetHeight;
+
+    noBtn.style.position = "absolute";
+    noBtn.style.left = Math.random()*maxX + "px";
+    noBtn.style.top = Math.random()*maxY + "px";
+});
+
+</script>
+
+</body>
+</html>
